@@ -5,6 +5,7 @@ import mapKeyStrArrayToObject from '../utils/mapStrArrayToObject'
 
 export default class InvokeElement extends HTMLElement {
   private _internals: ElementInternals
+  private fallback: string | null = null
   constructor() {
     super()
     this._internals = this.attachInternals()
@@ -79,6 +80,9 @@ export default class InvokeElement extends HTMLElement {
     const args = this.get_args_from_attr()
     this.pedding = false
     this.loading = true
+    if (this.getAttribute('show-loading-fallback')) {
+      this.innerHTML = this.fallback ?? ''
+    }
     invoke<string>(command, args)
       .then(e => {
         this.success = true
@@ -110,6 +114,7 @@ export default class InvokeElement extends HTMLElement {
     }
   }
   connectedCallback() {
+    this.fallback = this.innerHTML
     if (this.getAttribute('disabled') == null) {
       this.invoke_command()
     }
