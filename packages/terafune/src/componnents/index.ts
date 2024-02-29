@@ -1,2 +1,2 @@
 export { default as InvokeElement } from './invoke'
-export { default as InvokeButtonElement } from './invoke-button'
+export { default as InvokeRefreshButtonElement } from './invoke-refresh-button'

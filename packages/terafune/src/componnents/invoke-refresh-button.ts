@@ -1,5 +1,5 @@
 import InvokeElement from './invoke'
-export default class InvokeButtonElement extends HTMLButtonElement {
+export default class InvokeRefreshButtonElement extends HTMLButtonElement {
   constructor() {
     super()
     this.onsubmit = function () {}

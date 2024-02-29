@@ -1,8 +1,8 @@
-import { InvokeButtonElement, InvokeElement } from './componnents'
+import { InvokeRefreshButtonElement, InvokeElement } from './componnents'
 
 export function register(): void {
   customElements.define('t-invoke', InvokeElement)
-  customElements.define('t-invoke-button', InvokeButtonElement, {
+  customElements.define('t-invoke-refresh', InvokeRefreshButtonElement, {
     extends: 'button'
   })
 }
