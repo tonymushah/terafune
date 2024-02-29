@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:terafune": "cd ../../packages/terafune && pnpm build",
+    "install:terafune": "pnpm build:terafune && pnpm install terafune"
   },
   "dependencies": {
     "@tauri-apps/cli": "^1.5.10",
