@@ -1,5 +1,7 @@
-import { CallElement, defineComponnents } from "./componnents";
+import { CallElement } from "./componnents";
 
 export function register (): void {
-  defineComponnents([new CallElement()])
+  customElements.define("t-invoke", CallElement);
 }
+
+export * from "./componnents";

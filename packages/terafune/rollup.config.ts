@@ -5,7 +5,7 @@ export default {
   input: './src/index.ts',
   output: [
     {
-      format: 'umd',
+      format: 'es',
       dir: 'dist',
       name: 'terafune'
     }

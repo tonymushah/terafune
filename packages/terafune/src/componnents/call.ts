@@ -1,6 +1,4 @@
-import { DefineCustomComponnents } from ".";
-
-export default class CallElement extends HTMLElement implements DefineCustomComponnents {
+export default class CallElement extends HTMLElement {
   constructor() {
     super()
   }
@@ -18,9 +16,6 @@ export default class CallElement extends HTMLElement implements DefineCustomComp
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     console.log(`Attribute ${name} has changed.`);
-  }
-  define(): void {
-      customElements.define("call", CallElement);
   }
 }
 
