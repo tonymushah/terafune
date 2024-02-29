@@ -1,8 +1,7 @@
-import InvokeElement from './invoke'
-export default class InvokeRefreshButtonElement extends HTMLButtonElement {
+import InvokeElement from './t-invoke'
+export default class InvokeRefreshButtonElement extends HTMLElement {
   constructor() {
     super()
-    this.onsubmit = function () {}
   }
   get_target_id(): string | null {
     return this.getAttribute('target-id')
@@ -18,8 +17,8 @@ export default class InvokeRefreshButtonElement extends HTMLButtonElement {
   }
   get_selector(): string | null {
     const command = this.get_target_command()
-    const class_ = this.get_target_command()
-    if (command != null && command != null) {
+    const class_ = this.get_target_class()
+    if (command != null && class_ != null) {
       return `t-invoke.${class_}[command='${command}']`
     } else if (command != null) {
       return `t-invoke[command='${command}']`
@@ -41,12 +40,7 @@ export default class InvokeRefreshButtonElement extends HTMLButtonElement {
   get_targets(): InvokeElement[] {
     let targets: InvokeElement[] = []
     const target_id = this.get_target_id()
-    if (this.is_closet()) {
-      const closet = this.closest('t-invoke')
-      if (closet != null && closet instanceof InvokeElement) {
-        targets.push(closet)
-      }
-    } else if (
+    if (
       target_id != null &&
       target_id.trim().length != 0 &&
       document.getElementById(target_id) != null
@@ -57,10 +51,16 @@ export default class InvokeRefreshButtonElement extends HTMLButtonElement {
       }
     } else {
       const selector = this.get_selector()
+      console.debug(selector)
       if (selector) {
+        this.get_targets_by_selector(selector).forEach(e => {
+          if (e instanceof InvokeElement) {
+            targets.push(e)
+          }
+        })
       } else {
         throw new Error(
-          'Please define a `target-id` or a `target-class` or a  `command` or a `closet` attribute'
+          'Please define a `target-id` or a `target-class` or a  `command` attribute'
         )
       }
     }
