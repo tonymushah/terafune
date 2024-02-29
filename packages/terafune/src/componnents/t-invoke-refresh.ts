@@ -51,7 +51,7 @@ export default class InvokeRefreshButtonElement extends HTMLElement {
       }
     } else {
       const selector = this.get_selector()
-      console.debug(selector)
+      //console.debug(selector)
       if (selector) {
         this.get_targets_by_selector(selector).forEach(e => {
           if (e instanceof InvokeElement) {

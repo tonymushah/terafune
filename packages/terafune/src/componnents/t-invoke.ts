@@ -81,7 +81,7 @@ export default class InvokeElement extends HTMLElement {
     const args = this.get_args_from_attr()
     this.pedding = false
     this.loading = true
-    if (this.getAttribute('show-loading-fallback')) {
+    if (this.getAttribute('show-loading-fallback') != null) {
       this.innerHTML = this.fallback ?? ''
     }
     invoke<string>(command, args)
@@ -115,7 +115,7 @@ export default class InvokeElement extends HTMLElement {
     }
   }
   connectedCallback() {
-    this.fallback = this.innerHTML
+    this.fallback = structuredClone(this.innerHTML)
     if (this.getAttribute('disabled') == null) {
       this.invoke_command()
     }
@@ -123,7 +123,9 @@ export default class InvokeElement extends HTMLElement {
 
   disconnectedCallback() {}
 
-  adoptedCallback() {}
+  adoptedCallback() {
+    this.fallback = structuredClone(this.innerHTML)
+  }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (name == 'command') {
