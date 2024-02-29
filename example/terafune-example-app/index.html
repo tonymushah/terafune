@@ -10,7 +10,7 @@
 
 <body>
   <div id="app">
-    <t-invoke class="name" command="say_name" show-error arg:name="tony" disabled>
+    <t-invoke class="name" command="say_name" show-loading-fallback show-error arg:name="tony" arg:delay="2" disabled>
       Just a callback
     </t-invoke>
     <t-invoke-refresh command="say_name">

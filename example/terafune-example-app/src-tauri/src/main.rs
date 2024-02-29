@@ -2,10 +2,12 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use tauri::generate_handler;
+use tokio::time::{sleep, Duration};
 
 #[tauri::command]
-fn say_name(name: String) -> String {
-  format!("Your name is {name}")
+async fn say_name(name: String, delay: u64) -> Result<String, String> {
+  sleep(Duration::from_secs(delay)).await;
+  Ok(format!("Your name is {name}"))
 }
 
 fn main() {
