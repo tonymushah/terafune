@@ -2,9 +2,10 @@ import { invoke } from '@tauri-apps/api'
 import { InvokeArgs } from '@tauri-apps/api/tauri'
 import isJson from '../utils/isJson'
 import mapKeyStrArrayToObject from '../utils/mapStrArrayToObject'
+import { CustomElementInternals } from '../utils/internals'
 
 export default class InvokeElement extends HTMLElement {
-  private _internals: ElementInternals
+  private _internals: CustomElementInternals
   private fallback: string | null = null
   constructor() {
     super()
@@ -13,43 +14,43 @@ export default class InvokeElement extends HTMLElement {
   }
   set pedding(i: boolean) {
     if (i) {
-      this._internals.states.add('pedding')
+      this._internals.states?.add('pedding')
     } else {
-      this._internals.states.delete('pedding')
+      this._internals.states?.delete('pedding')
     }
   }
   get pedding(): boolean {
-    return this._internals.states.has('pedding')
+    return this._internals.states?.has('pedding') ?? false
   }
   set loading(i: boolean) {
     if (i) {
-      this._internals.states.add('loading')
+      this._internals.states?.add('loading')
     } else {
-      this._internals.states.delete('loading')
+      this._internals.states?.delete('loading')
     }
   }
   get loading(): boolean {
-    return this._internals.states.has('loading')
+    return this._internals.states?.has('loading') ?? false
   }
   set success(i: boolean) {
     if (i) {
-      this._internals.states.add('success')
+      this._internals.states?.add('success')
     } else {
-      this._internals.states.delete('success')
+      this._internals.states?.delete('success')
     }
   }
   get success(): boolean {
-    return this._internals.states.has('success')
+    return this._internals.states?.has('success') ?? false
   }
   set error(i: boolean) {
     if (i) {
-      this._internals.states.add('error')
+      this._internals.states?.add('error')
     } else {
-      this._internals.states.delete('error')
+      this._internals.states?.delete('error')
     }
   }
   get error(): boolean {
-    return this._internals.states.has('error')
+    return this._internals.states?.has('error') ?? false
   }
   _get_args_from_attr(): InvokeArgs {
     const args_names = this.getAttributeNames().filter(a =>
